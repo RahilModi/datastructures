@@ -29,7 +29,7 @@ public class CircularListNode {
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof CircularListNode){
-            if(((CircularListNode) obj).getData()==(this.getData())){ //here == will work for only values less than 256, bcz of java makes new Integer object refers to the previously created.
+            if(((CircularListNode) obj).getData()==(this.getData())){
                 return true;
             }
         }
