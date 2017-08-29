@@ -155,6 +155,29 @@ public class LinkedList {
         }
     }
 
+    //remove by position
+    public synchronized void removeByPosition(int position){
+        if(isListEmpty()){
+            System.out.println("Sorry...list is empty");
+        }else if(position < 0){
+            System.out.println("Position should be greater than and equal to 0");
+        }else if(position >= length()){
+            System.out.println("Position should be less than the size of the list");
+        }else if(position == 0){
+            head = head.getNext();
+        }else{
+            Node temp = head.getNext();
+            Node prev = head;
+            int pos = 1;
+            while(position > pos){
+                prev = temp;
+                temp = temp.getNext();
+                pos++;
+            }
+            prev.setNext(temp.getNext());
+        }
+    }
+
     public boolean isListEmpty(){
         if(head == null){
             return true;
@@ -171,4 +194,6 @@ public class LinkedList {
         }
         return length;
     }
+
+
 }
