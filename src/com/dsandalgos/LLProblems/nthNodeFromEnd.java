@@ -2,58 +2,6 @@ package com.dsandalgos.LLProblems;
 
 import java.util.Hashtable;
 
-class Node {
-
-    private int data;
-    private Node next;
-
-    public Node(int data) {
-        this.data = data;
-        this.next = null;
-    }
-
-    public int getData() {
-        return data;
-    }
-
-    public void setData(int data) {
-        this.data = data;
-    }
-
-    public Node getNext() {
-        return next;
-    }
-
-    public void setNext(Node next) {
-        this.next = next;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if(obj instanceof Node){
-            if(((Node) obj).getData() == this.getData()){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public String toString() {
-        if(this == null){
-            return "";
-        }
-        StringBuilder str = new StringBuilder("[ "+ this.getData());
-
-        if(this.getNext() != null){
-            str.append("-> " + this.getNext().getData());
-        }
-
-        str.append(" ]");
-        return  str.toString();
-    }
-}
-
 class ListImp{
 
     private Node head;
@@ -216,7 +164,7 @@ public class nthNodeFromEnd{
             System.out.println(list);
         }
         System.out.println(list.getnthNodeFromBack(6)); //indexing is from 1 to n
-        Node temp = list.getnthNodeFromBack(list.getHead(),1);
+        Node temp = list.getnthNodeFromBack(list.getHead(),1); //using recursion
         ListImp.counter = 0; //need to reset static variable..
         System.out.println(list.getnthNodeFromBack(list.getHead(),5));
 

@@ -157,6 +157,34 @@ class cyclicListImp{
         return null;
     }
 
+    public int findLengthOfLoop(){
+        Node slwPtr = head;
+        Node fastPtr = head;
+        boolean loopExists = false;
+        if (head == null) {
+            System.out.println("List is empty");
+        } else {
+
+            while (fastPtr != null && fastPtr.getNext() != null) {
+                fastPtr = fastPtr.getNext().getNext();
+                slwPtr = slwPtr.getNext();
+                if(fastPtr == slwPtr){
+                    loopExists = true;
+                    break;
+                }
+            }
+            int length = 0;
+            if(loopExists){
+                do{
+                    slwPtr = slwPtr.getNext();
+                    length++;
+                }while(slwPtr != fastPtr);
+                return length;
+            }
+        }
+        return 0;
+    }
+
     public void removeCyclicity(){
         if(findLoopExistsUsingFloyd()) {
             Node temp = findBeginningOfLoop();
@@ -185,7 +213,22 @@ class cyclicListImp{
             strBld.append(" ]");
             return strBld.toString();
         }else{
-            return "Cyclic List";
+            Node temp = findBeginningOfLoop();
+            Node t = head;
+            StringBuilder str = new StringBuilder("[ ");
+            while(t != temp){
+                str.append(t.getData());
+                str.append(" -> ");
+                t = t.getNext();
+            }
+            str.append(t.getData() + " -> ");
+            t =t.getNext();
+            while(t != temp){
+                str.append(t.getData() +" -> ");
+                t= t.getNext();
+            }
+            str.append(t.getData() + " ]");
+            return str.toString();
         }
     }
 }
@@ -200,25 +243,27 @@ public class cyclicListTest {
         cyclicList.insert(new Node(101));
         System.out.println(cyclicList);
 
-        cyclicList.makeCyclicList(new Node(1022),4);
+        cyclicList.makeCyclicList(new Node(1022),1);
 
         System.out.println(cyclicList);
 
         cyclicListImp list1 = new cyclicListImp();
         list1.makeCyclicList(new Node(1000),3);
         System.out.println(list1);
-        list1.makeCyclicList(new Node(1001),0);
+        list1.makeCyclicList(new Node(1001),1);
         System.out.println(list1);
 
         Node temp = cyclicList.findBeginningOfLoop();
         System.out.println(temp);
 
-        cyclicList.removeCyclicity();
-        System.out.println(cyclicList);
+        //cyclicList.removeCyclicity();
+        System.out.println(cyclicList.findLengthOfLoop());
 
         list1.removeCyclicity();
-        System.out.println(list1);
+        //System.out.println(list1.findLengthOfLoop());
 
+        cyclicList.insert(new Node(10022));
+        System.out.println(cyclicList);
     }
 
 
