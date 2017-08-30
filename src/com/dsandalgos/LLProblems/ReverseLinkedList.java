@@ -12,8 +12,9 @@ class ReverseLinkedListImp extends LinkedList{
             System.out.println("List is empty...");
         }else{
             Node prev = null;
+            Node next = null;
             while(temp.getNext() != null){
-                Node next = temp;
+                next = temp;
                 temp = temp.getNext();
                 next.setNext(prev);
                 prev = next;
@@ -27,22 +28,15 @@ class ReverseLinkedListImp extends LinkedList{
 
     //reverse using recursion time complexity = O(n) and Space complexity = O(n) recursive stack..
     //if list is already empty return null and newhead will also have null;
-    public synchronized Node reverseByrecursion(Node head,Node[] newhead){
-        if(head != null && head.getNext() != null){
-            Node prev = reverseByrecursion(head.getNext(),newhead);
-            if(head == getHead()){
-                head.setNext(null);
-                prev.setNext(head);
-                setHead(newhead[0]);
-                return getHead();
-            }else {
-                prev.setNext(head);
-                head.setNext(null);
-                return head;
-            }
+    public synchronized Node reverseByrecursion(Node node){
+        if(node != null && node.getNext() != null){
+            Node next = node.getNext();
+            node.setNext(null);
+            Node rest = reverseByrecursion(next);
+            next.setNext(node);
+            return rest;
         }else{
-            newhead[0] = head;
-            return head;
+            return node;
         }
     }
 
@@ -69,11 +63,13 @@ public class ReverseLinkedList {
         linkedList.insertAtEnd(new Node(1430));
         Node[] heads = new Node[1];
         System.out.println(linkedList);
-        Node newHead = linkedList.reverseByrecursion(linkedList.getHead(),heads); //heads and newHead will have new head
+        Node newHead = linkedList.reverseByrecursion(linkedList.getHead()); //heads and newHead will have new head
+        linkedList.setHead(newHead);
         System.out.println(linkedList);
         linkedList.removeFromTheBeginning();
         System.out.println(linkedList);
-        linkedList.reverseByrecursion(linkedList.getHead(),heads);
+        newHead = linkedList.reverseByrecursion(linkedList.getHead());
+        linkedList.setHead(newHead);
         System.out.println(linkedList);
 
     }
