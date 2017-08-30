@@ -66,6 +66,7 @@ public class LinkedList {
             Node temp = head;
             if(position >= length()){
                 insert(node);
+                return;
             }
             while ( position > pos ){
                 temp = temp.getNext();
@@ -195,5 +196,29 @@ public class LinkedList {
         return length;
     }
 
+    public synchronized Node middleElementOftheList(){
+        if(head == null){
+            return null;
+        }else{
+            Node slwPtr = head;
+            Node fastPtr = head;
+            while(fastPtr != null){
+                fastPtr = fastPtr.getNext();
+                if(fastPtr != null){
+                    slwPtr = slwPtr.getNext();
+                    fastPtr = fastPtr.getNext();
+                }
+            }
+            return slwPtr;
+        }
+    }
+
+    public void printListInReverse(Node head){
+        if(head == null){
+            return;
+        }
+        printListInReverse(head.getNext());
+        System.out.println(head.getData());
+    }
 
 }
