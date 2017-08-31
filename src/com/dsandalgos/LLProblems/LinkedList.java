@@ -221,4 +221,15 @@ public class LinkedList {
         System.out.println(head.getData());
     }
 
+    public String printList(Node head){
+        Node temp = head;
+        StringBuilder str = new StringBuilder("[ ");
+        while(temp != null){
+            str.append(temp.getData());
+            temp = temp.getNext();
+            str.append("->");
+        }
+        str.append(" ]");
+        return str.toString();
+    }
 }
