@@ -76,7 +76,8 @@ public class CircularLL {
             temp = temp.getNext();
         }
         if(temp !=null) {
-            strBld.append(temp + "]");
+            strBld.append(temp);
+            strBld.append(temp.getNext() +"]");
         }else{
             strBld.append("]");
         }
@@ -215,6 +216,29 @@ public class CircularLL {
                 position++;
             }
             return temp;
+        }
+    }
+
+    //spliting circular linked list into two circular linked list of equal size if length is even
+    //for odd size first list will have an extra element.
+
+    public synchronized void splitIntoTwoCircularList(CircularLL newHead1,CircularLL newHead2){
+        CircularListNode slwPtr = getTail();
+        CircularListNode fastPtr = getTail();
+        if(getTail()==null)
+            return;
+        newHead1.setTail(getTail());
+        while(!fastPtr.getNext().equals(getTail())){
+            fastPtr = fastPtr.getNext();
+            if(!fastPtr.getNext().equals(getTail())){
+                slwPtr = slwPtr.getNext();
+                fastPtr = fastPtr.getNext();
+            }
+        }
+        if(!slwPtr.equals(fastPtr)) {
+            newHead2.setTail(slwPtr.getNext());
+            slwPtr.setNext(newHead1.getTail());
+            fastPtr.setNext(newHead2.getTail());
         }
     }
 

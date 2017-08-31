@@ -60,5 +60,16 @@ public class CircularLLTest {
         CircularList.removeNodeAtGivenPos(0);
         CircularList.insert(new CircularListNode(1005));
         System.out.println(CircularList);
+        CircularList.insert(new CircularListNode(10));
+        CircularList.insert(new CircularListNode(103));
+        CircularList.insert(new CircularListNode(705));
+        CircularList.insert(new CircularListNode(500));
+        CircularLL newList1 = new CircularLL();
+        CircularLL newList2 = new CircularLL();
+        System.out.println(CircularList);
+        CircularList.splitIntoTwoCircularList(newList1, newList2);
+        System.out.println(newList1);
+        System.out.println(newList2);
+
     }
 }

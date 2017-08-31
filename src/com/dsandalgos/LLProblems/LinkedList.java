@@ -197,14 +197,14 @@ public class LinkedList {
     }
 
     public synchronized Node middleElementOftheList(){
-        if(head == null){
+        if(head == null||head.getNext()==null){ //linked list with single node there is not middle element.
             return null;
         }else{
             Node slwPtr = head;
             Node fastPtr = head;
             while(fastPtr != null){
                 fastPtr = fastPtr.getNext();
-                if(fastPtr != null){
+                if(fastPtr != null && fastPtr.getNext() != null){
                     slwPtr = slwPtr.getNext();
                     fastPtr = fastPtr.getNext();
                 }

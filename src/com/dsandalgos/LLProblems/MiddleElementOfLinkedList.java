@@ -14,6 +14,7 @@ public class MiddleElementOfLinkedList {
         list.insert(node2);
         System.out.println(list);
         list.remove(new Node(1223));
+        list.insert(new Node(123));
         System.out.println(list);
         System.out.println(list.middleElementOftheList());
     }
