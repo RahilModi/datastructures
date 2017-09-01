@@ -2,6 +2,10 @@ package com.dsandalgos.LLProblems;
 
 import com.dsandalgos.LinkedList.LinkedListNode;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 public class LinkedList {
     private Node head;
 
@@ -231,5 +235,46 @@ public class LinkedList {
         }
         str.append(" ]");
         return str.toString();
+    }
+
+    //O(n^2) complexity
+    public void removeDuplicates(){
+        if(head == null || head.getNext() == null){
+            return;
+        }
+        Node temp = head;
+        Node prev = null;
+        Node current = null;
+        while(temp != null){
+            current = temp.getNext();
+            prev = temp;
+            while(current != null){
+                if(current.equals(temp)){
+                    prev.setNext(current.getNext());
+                }
+                prev = current;
+                current = current.getNext();
+            }
+            temp = temp.getNext();
+        }
+    }
+
+    //O(n) time complexity and O(n) space complexity
+    public void removeDuplicatesUsingSet(){
+        if(head == null || head.getNext() == null){
+            return;
+        }
+        HashSet<Integer> set = new HashSet<>();
+        Node temp = head;
+        Node prev = null;
+        while(temp!=null){
+            if(!set.contains(temp.getData())){
+                set.add(temp.getData());
+                prev = temp;
+            }else{
+                prev.setNext(temp.getNext());
+            }
+            temp = temp.getNext();
+        }
     }
 }
