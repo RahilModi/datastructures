@@ -691,5 +691,28 @@ public class BinaryTree {
         System.out.println("");
     }
 
+    //problem 24: create mirror image of tree
+    public BinaryTreeNode mirrorOfBT(BinaryTreeNode root){
+        BinaryTreeNode temp;
+        if(root != null){
+            mirrorOfBT(root.getLeft());
+            mirrorOfBT(root.getRight());
+            temp = root.getLeft();
+            root.setLeft(root.getRight());
+            root.setRight(temp);
+        }
+        return root;
+    }
+
+    //problem 25: check both trees are mirrot of each other
+    public boolean areMirrors(BinaryTreeNode root1, BinaryTreeNode root2){
+        if(root1 == null && root2 == null) return true;
+        if(root1 == null || root2 == null) return false;
+        if(root1.getData() != root2.getData()) return false;
+        else return areMirrors(root1.getLeft(), root2.getRight()) && areMirrors(root1.getRight(), root2.getLeft());
+
+    }
+
+
 
 }

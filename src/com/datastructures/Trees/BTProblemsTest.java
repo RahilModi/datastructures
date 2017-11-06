@@ -95,5 +95,9 @@ public class BTProblemsTest {
 
         System.out.println("all paths from root to leaf nodes :");
         binaryTree.printpaths(root);
+
+        BinaryTreeNode newMirrorTree = binaryTree.mirrorOfBT(root);
+
+
     }
 }
