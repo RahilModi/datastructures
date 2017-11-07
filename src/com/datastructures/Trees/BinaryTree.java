@@ -1,5 +1,6 @@
 package com.datastructures.Trees;
 
+import com.datastructures.arrays.MajorityElement;
 import com.datastructures.queueProblems.QueueUsingTwoStack;
 
 import java.util.ArrayList;
@@ -712,6 +713,55 @@ public class BinaryTree {
         else return areMirrors(root1.getLeft(), root2.getRight()) && areMirrors(root1.getRight(), root2.getLeft());
 
     }
+
+    //problem 26: diameter of Binary tree
+    ////leetcode 543: diameter based on the number of paths (need to remove +1 from the return statement)
+    public int diameterOfBinaryTree(BinaryTreeNode root){
+        if(root == null) return 0;
+        int leftHeight = heightBT(root.getLeft());
+        int rightHeight = heightBT(root.getRight());
+
+        int diameterOfLeftBT = diameterOfBinaryTree(root.getLeft());
+        int diameterOfRightBT = diameterOfBinaryTree(root.getRight());
+
+        return Math.max(leftHeight + rightHeight + 1, Math.max(diameterOfLeftBT,diameterOfRightBT));
+
+    }
+
+    private static int heightBT(BinaryTreeNode node){
+        if(node == null) return 0;
+        return (1 + Math.max(heightBT(node.getLeft()),heightBT(node.getRight())));
+    }
+
+    //problem 27: width of Binary Tree
+
+    public int maxWidthOfBinaryTree(BinaryTreeNode root){
+        if(root == null) return 0;
+        int maxwidth = 0;
+        Queue<BinaryTreeNode> q = new LinkedList<>();
+        q.add(root);
+
+        while(!q.isEmpty()){
+            int count = q.size();
+            maxwidth = Math.max(maxwidth,count);
+            while(count-->0){
+                BinaryTreeNode temp = q.poll();
+
+                if(temp.getLeft() != null){
+                    q.add(temp.getLeft());
+                }
+                if(temp.getRight() != null){
+                    q.add(temp.getRight());
+                }
+            }
+        }
+
+        return  maxwidth;
+    }
+
+    //problem 28: generate Binary tree from inorder and preorder traversals sequence.
+
+
 
 
 

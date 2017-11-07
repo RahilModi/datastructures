@@ -54,6 +54,10 @@ public class BinaryTreeTest {
 
         System.out.println("\n\nlevel Order without recurssion : ");
         binaryTree.levelOrderUsingQueue(binaryTree.getRoot());
+
+        System.out.println("\n\n diameter of the binary tree: "+binaryTree.diameterOfBinaryTree(root));
+
+        System.out.println("\n\n width of the binary tree: "+binaryTree.maxWidthOfBinaryTree(root));
     }
 
 
