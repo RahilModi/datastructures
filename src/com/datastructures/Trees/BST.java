@@ -1,5 +1,8 @@
 package com.datastructures.Trees;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BST {
 
     private BSTNode root = null;
@@ -164,5 +167,24 @@ public class BST {
         if(node.getData() > data) return floorNode(node.getLeft(),data);
         int floor = floorNode(node.getRight(),data);
         return floor < node.getData() ? node.getData():floor;
+    }
+
+    public void printRange(BSTNode node, int k1, int k2){
+        if(node == null)return;
+        if(node.getData() >= k1) printRange(node.getLeft(),k1,k2);
+        if(node.getData() > k1 && node.getData()<k2) System.out.println(node.getData());
+        if(node.getData() <= k2) printRange(node.getRight(),k1,k2);
+    }
+
+    public void rangePrinter(BSTNode node, int k1, int k2){
+        Queue<BSTNode> q = new LinkedList<>();
+        if(node == null) return;
+        q.offer(node);
+        while(!q.isEmpty()){
+            BSTNode temp = q.poll();
+            if(temp.getData() >= k1 && temp.getData() <= k2) System.out.println(temp.getData());
+            if(temp.getLeft() != null && temp.getData() >= k1) q.offer(temp.getLeft());
+            if(temp.getRight() != null && temp.getData() <= k2) q.offer(temp.getRight());
+        }
     }
 }
