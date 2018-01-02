@@ -52,7 +52,7 @@ public class BST {
         if(node == null) return null;
         else
         if(node.getRight() == null) return node;
-        else return findMinimum(node.getRight());
+        else return findMaximum(node.getRight());
     }
 
     public BSTNode findMax(){
@@ -94,29 +94,29 @@ public class BST {
         return root;
     }
 
-    public boolean checkBST(BinaryTreeNode node){
-        if(node == null) return true;
-        if(node.getLeft() != null && node.getLeft().getData() > node.getData()) return false;
-        if(node.getRight() != null && node.getRight().getData() < node.getData()) return false;
-        if(!isBST(node.getLeft()) || !isBST(node.getRight())) return false;
-        return true;
-    }
+//    public boolean checkBST(BinaryTreeNode node){
+//        if(node == null) return true;
+//        if(node.getLeft() != null && node.getLeft().getData() > node.getData()) return false;
+//        if(node.getRight() != null && node.getRight().getData() < node.getData()) return false;
+//        if(!isBST(node.getLeft()) || !isBST(node.getRight())) return false;
+//        return true;
+//    }
 
     //solved incorrect parrt of the above code
-    public boolean isBST(BinaryTreeNode node){
-        if(node == null) return true;
-        //              6
-        //      2               8
-        //  1       9
-        //above tree will give correct answer in above solution.
-
-        //compare with the max element of the left subtree
-        if(node.getLeft() != null && node.getData() < findMaximum(node.getLeft()).getData()) return false;
-        //compare with the min element of the right subtree
-        if(node.getRight() != null &&  findMinimum(node.getRight()).getData() < node.getData()) return false;
-        if(!isBST(node.getLeft()) || !isBST(node.getRight())) return false;
-        return true;
-    }
+//    public boolean isBST(BinaryTreeNode node){
+//        if(node == null) return true;
+//        //              6
+//        //      2               8
+//        //  1       9
+//        //above tree will give correct answer in above solution.
+//
+//        //compare with the max element of the left subtree
+//        if(node.getLeft() != null && node.getData() < findMaximum(node.getLeft()).getData()) return false;
+//        //compare with the min element of the right subtree
+//        if(node.getRight() != null &&  findMinimum(node.getRight()).getData() < node.getData()) return false;
+//        if(!isBST(node.getLeft()) || !isBST(node.getRight())) return false;
+//        return true;
+//    }
 
     public int distanceFromRoot(BSTNode root, int key){
         if(root.getData() == key) return 0;
