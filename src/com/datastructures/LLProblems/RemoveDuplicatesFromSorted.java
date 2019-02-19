@@ -30,6 +30,29 @@ public class RemoveDuplicatesFromSorted {
         return head;
     }
 
+    public ListNode deleteDuplicatesV1(ListNode head) {
+        if(head == null || head.next == null)return head;
+        head.next = deleteDuplicatesV1(head.next);
+        return head.val == head.next.val ? head.next : head;
+    }
+
+    public ListNode deleteDuplicatesV2(ListNode head) {
+        ListNode list = head;
+
+        while(list != null) {
+            if (list.next == null) {
+                break;
+            }
+            if (list.val == list.next.val) {
+                list.next = list.next.next;
+            } else {
+                list = list.next;
+            }
+        }
+
+        return head;
+    }
+
     public static void main(String[] args) {
         RemoveDuplicatesFromSorted temp = new RemoveDuplicatesFromSorted();
         ListNode node = temp.new ListNode(1);

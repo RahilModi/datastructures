@@ -13,13 +13,7 @@ public class Merge2SortedList {
         if(l1 == null) return l2;
         else if(l2 == null) return l1;
         else{
-            if(l1.val >= l2.val){
-                newList = l2;
-                l2 = l2.next;
-            }else{
-                newList = l1;
-                l1 = l1.next;
-            }
+            newList = new ListNode(0);
         }
         ListNode temp = newList;
         while(l1 != null && l2 != null){

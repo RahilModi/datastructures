@@ -37,43 +37,65 @@ public class MergeTwoSortedLL {
     }
 
     //Merge sorted list w/o recursion
-    public static Node mergeTwoSortedListWORecursion(Node head1,Node head2){
-            Node newHead = null;
-            if(head1 != null && head2 != null) {
-                if (head1.getData() < head2.getData()) {
-                    newHead = head1;
-                    head1 = head1.getNext();
-                } else {
-                    newHead = head2;
-                    head2 = head2.getNext();
-                }
+    public static Node mergeTwoSortedListWORecursion(Node head1,Node head2) {
+        Node newHead = null;
+        if (head1 != null && head2 != null) {
+            if (head1.getData() < head2.getData()) {
+                newHead = head1;
+                head1 = head1.getNext();
+            } else {
+                newHead = head2;
+                head2 = head2.getNext();
             }
-            Node temp = newHead;
-            while(head1!=null && head2!= null) {
-                if (head1.getData() < head2.getData()) {
-                        temp.setNext(head1);
-                        temp = temp.getNext();
-                        head1 = head1.getNext();
-                } else{
-                        temp.setNext(head2);
-                        temp = temp.getNext();
-                        head2 = head2.getNext();
-                }
+        }
+        Node temp = newHead;
+        while (head1 != null && head2 != null) {
+            if (head1.getData() < head2.getData()) {
+                temp.setNext(head1);
+                temp = temp.getNext();
+                head1 = head1.getNext();
+            } else {
+                temp.setNext(head2);
+                temp = temp.getNext();
+                head2 = head2.getNext();
             }
-            if(head1 != null){
-                if(newHead == null){
-                    newHead = head1;
-                }else {
-                    temp.setNext(head1);
-                }
-            }else if(head2 != null){
-                if(newHead == null){
-                    newHead = head2;
-                }else {
-                    temp.setNext(head2);
-                }
+        }
+        if (head1 != null) {
+            if (newHead == null) {
+                newHead = head1;
+            } else {
+                temp.setNext(head1);
             }
+        } else if (head2 != null) {
+            if (newHead == null) {
+                newHead = head2;
+            } else {
+                temp.setNext(head2);
+            }
+        }
         return newHead;
+    }
+
+    public static Node mergeTwoSortedListWORecursion(Node head1,Node head2) {
+        Node newHead = new Node(0);
+        Node temp = newHead;
+        while (head1 != null && head2 != null) {
+            if (head1.getData() < head2.getData()) {
+                temp.setNext(head1);
+                temp = temp.getNext();
+                head1 = head1.getNext();
+            } else {
+                temp.setNext(head2);
+                temp = temp.getNext();
+                head2 = head2.getNext();
+            }
+        }
+        if (head1 != null) {
+            temp.setNext(head1);
+        } else if (head2 != null) {
+            temp.setNext(head2);
+        }
+        return newHead.next;
     }
     public static void main(String[] args) {
         SortedLinkedListImp sortedList = new SortedLinkedListImp();
