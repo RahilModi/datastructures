@@ -13,7 +13,7 @@ public class swapPairs {
             return head;
         }
         ListNode nextNode = head.next;
-        head.next = swapPairs(nextNode.next);
+        head.next = swapPairsRecursive(nextNode.next);
         nextNode.next = head;
         return nextNode;
     }

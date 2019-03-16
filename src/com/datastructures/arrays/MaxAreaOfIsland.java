@@ -1,3 +1,5 @@
+package com.datastructures.arrays;
+
 public class MaxAreaOfIsland {
 
     public int maxAreaOfIsland(int[][] grid) {

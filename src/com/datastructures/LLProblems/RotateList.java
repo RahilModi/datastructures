@@ -38,7 +38,7 @@ public class RotateList {
 
     }
 
-    //10->20->30->40->50->60 where k=2 right rotate will be 30->40->50->60->10->20
+    //10->20->30->40->50->60 where k=2 left rotate will be 30->40->50->60->10->20
     public static Node leftRotate(Node head, int k){
 
         Node temp = head;

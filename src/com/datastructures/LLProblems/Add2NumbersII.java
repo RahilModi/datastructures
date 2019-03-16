@@ -17,7 +17,7 @@ public class Add2NumbersII {
         while(l1 != null) {
             s1.push(l1.val);
             l1 = l1.next;
-        };
+        }
         while(l2 != null) {
             s2.push(l2.val);
             l2 = l2.next;
